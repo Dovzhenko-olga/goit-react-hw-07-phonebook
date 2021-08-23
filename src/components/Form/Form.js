@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contact-actions';
-import { getContacts } from "../../redux/contact-selectors";
+import {contactOperations, contactSelectors } from 'redux/contacts';
 import styles from './Form.module.css';
 
 
 function Form({onShowModal}) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(contactSelectors.getContacts);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -38,9 +37,11 @@ function Form({onShowModal}) {
       reset();
       return;
       }
-    dispatch(addContact({name, number}));
+    dispatch(contactOperations.addContact({name, number}));
     reset();
   };
+
+  useEffect(() => dispatch(contactOperations.fetchContacts()), [dispatch]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

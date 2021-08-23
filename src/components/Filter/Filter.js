@@ -1,13 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/contact-actions';
-import { getValue } from '../../redux/contact-selectors';
+import { contactSelectors, contactActions } from 'redux/contacts';
 import styles from './Filter.module.css';
 
 const Filter = () => {
-  const value = useSelector(getValue);
+  const value = useSelector(contactSelectors.getValue);
   const dispatch = useDispatch();
 
-  const onChange = e => dispatch(changeFilter(e.target.value));
+  const onChange = e => dispatch(contactActions.changeFilter(e.target.value));
 
   return (
     <label className={styles.search}>
@@ -19,12 +18,5 @@ const Filter = () => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   value: state.contact.filter
-// })
-
-// const mapDispatchToProps = dispatch => ({
-//   onChange: (e) => dispatch(changeFilter(e.target.value))
-// })
 
 export default Filter;
