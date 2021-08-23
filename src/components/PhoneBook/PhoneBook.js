@@ -4,7 +4,7 @@ import { contactSelectors, contactOperations } from 'redux/contacts';
 
 const PhoneBook = () => {
 
-  const isLoading = useSelector(contactSelectors.isLoading);
+  const isLoading = useSelector(contactSelectors.getIsLoading);
   const contacts = useSelector(contactSelectors.filteredContacts);
   const dispatch = useDispatch();
 

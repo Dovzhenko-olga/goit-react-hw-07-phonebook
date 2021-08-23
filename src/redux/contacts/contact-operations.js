@@ -21,22 +21,39 @@ export const fetchContacts = createAsyncThunk(
   }
 )
 
-export const addContact = (data) => async dispatch => {
-  dispatch(contactActions.addContactsRequest());
+// export const addContact = (data) => async dispatch => {
+//   dispatch(contactActions.addContactsRequest());
 
-  try {
+//   try {
+//     const contacts = await contactAPI.addContacts(data);
+//   dispatch(contactActions.addContactsSuccess(contacts));
+//   } catch (error) {
+//     dispatch(contactActions.addContactsError(error));
+//   }
+// };
+
+export const addContact = createAsyncThunk(
+  'contact/addContact',
+  async (data) => {
     const contacts = await contactAPI.addContacts(data);
-  dispatch(contactActions.addContactsSuccess(contacts));
-  } catch (error) {
-    dispatch(contactActions.addContactsError(error));
+    return contacts;
   }
-};
-
+)
+  
 export const deleteContact = contactId => async dispatch => {
   dispatch(contactActions.deleteContactsRequest());
+
   try {
+    await contactAPI.deleteContact(contactId);
     dispatch(contactActions.deleteContactsSuccess(contactId));
   } catch (error) {
     dispatch(contactActions.deleteContactsError(error));
   }
 }
+
+// export const deleteContact = createAsyncThunk(
+//   'contact/deleteContact',
+//   async (contactId) => {
+//     return await contactAPI.deleteContact(contactId);
+//   }
+// )
