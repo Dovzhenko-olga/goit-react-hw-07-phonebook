@@ -1,5 +1,5 @@
 import * as contactAPI from 'services/contact-api';
-import * as contactActions from './contact-actions';
+// import * as contactActions from './contact-actions';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // export const fetchContacts = () => async dispatch => {
@@ -40,20 +40,21 @@ export const addContact = createAsyncThunk(
   }
 )
   
-export const deleteContact = contactId => async dispatch => {
-  dispatch(contactActions.deleteContactsRequest());
+// export const deleteContact = contactId => async dispatch => {
+//   dispatch(contactActions.deleteContactsRequest());
 
-  try {
-    await contactAPI.deleteContact(contactId);
-    dispatch(contactActions.deleteContactsSuccess(contactId));
-  } catch (error) {
-    dispatch(contactActions.deleteContactsError(error));
-  }
-}
-
-// export const deleteContact = createAsyncThunk(
-//   'contact/deleteContact',
-//   async (contactId) => {
-//     return await contactAPI.deleteContact(contactId);
+//   try {
+//     await contactAPI.deleteContact(contactId);
+//     dispatch(contactActions.deleteContactsSuccess(contactId));
+//   } catch (error) {
+//     dispatch(contactActions.deleteContactsError(error));
 //   }
-// )
+// }
+
+export const deleteContact = createAsyncThunk(
+  'contact/deleteContact',
+  async (contactId) => {
+    await contactAPI.deleteContact(contactId);
+    return contactId;
+  }
+)
