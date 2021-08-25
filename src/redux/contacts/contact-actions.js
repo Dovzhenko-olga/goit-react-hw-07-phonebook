@@ -11,6 +11,6 @@ export const changeFilter = createAction('contact/changeFilter');
 // export const addContactsSuccess = createAction('contact/addContactsSuccess');
 // export const addContactsError = createAction('contact/addContactsError');
 
-export const deleteContactsRequest = createAction('contact/deleteContactsRequest');
-export const deleteContactsSuccess = createAction('contact/deleteContactsSuccess');
-export const deleteContactsError = createAction('contact/deleteContactsError');
+// export const deleteContactsRequest = createAction('contact/deleteContactsRequest');
+// export const deleteContactsSuccess = createAction('contact/deleteContactsSuccess');
+// export const deleteContactsError = createAction('contact/deleteContactsError');
